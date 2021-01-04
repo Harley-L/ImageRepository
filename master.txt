@@ -1,0 +1,7 @@
+deer,4
+deer2.png,1
+jellyfish.png,3
+lizzzzard,1
+monkey.png,1
+owl.png,1
+whale.png,1

@@ -1,0 +1,80 @@
+                                     Journal for Image Repository
+
+To access a video of the final project, please go to this link:
+srdtcfvgbhjdxgfchgvytchgchcjhchjgcjhgchjgcjhgchjgcjhgchjgcjhgcjhgcjhgcjhgcjhgcjhgchjgcjhgcjhgcjhgchjgcjhgcjhgcjhgc
+
+First, I brainstormed what path I wanted to follow with my repository. This would be a general idea rather than very
+specific as I wanted to let my vision to change as I found what I am passionate about. Weighing the pros and cons of
+each idea that I come by. I decided to take the less conventional route by building an entire UI from the ground up as
+I wanted to challenge myself!
+
+I am a firm believer in building a working MVP and then building up features and extended functionality later. If I
+think of a new feature, I write it down for later and keep it in the back of my mind. As I build the framework, I make
+sure that it can support this feature later in time to avoid a headache later.
+
+In this project, I started with the primary objective, storing and accessing images in a repository. Using the python
+library Shutil, I was able to ask the user for a file, then store it in an easily accessible folder. Although not the
+most secure storage, I am focusing on all of the different features of my UI like image statistics, image previews, and
+inventory changes.
+
+Although I didn’t comment while I was coding to keep me focused. After each feature was built, I commented it out to
+make sure I don’t get lost in my code. This helped a lot when adding different features as I had to revisit each
+function to make sure it was compatible.
+
+In the beginning, I built the homepage in one code block. Although functional, this was not very easy to change so I
+decided to export most of the structure of the homepage to helper functions. After this, I added the statistics page as
+a new page and used the same function to print the menu bar. The homepage now consists of a menu bar at the top of the
+window and the images with their respective buttons/labels printed in two rows.
+
+To start with basic inventory functionality, I created a global dictionary holding each image's name and respective
+inventory. This was a temporary way to test the program and start with an empty list each restart. After uploading an
+image, I implemented a popup confirmation window confirming that the image was received and put into storage and added
+to the global list. After each change in inventory, upload of a new image, or rename, the UI needed to be refreshed
+using a change screen function. This was a slow way to update the screen since all of the images required to be reloaded
+every time a variable changed but was functional for the time being.
+
+I decided to tackle this slow reloading problem and began doing some research. The solution that I came across seemed
+to work as it used the .config() option which only updated the changed widget. After adding this improvement, I forgot
+to test it with edge conditions and missed a bug where it updates the wrong inventory if there are multiple images in
+the directory. As I never tested it and only found this error later on, it took a large amount of time to figure out
+where this bug was coming from. Thankfully, I noticed that whenever I fully reload the page everything fixed itself
+which pointed me to the .config() as the root of the problem. After doing a little more research as to why I was getting
+this error, I realized that because the buttons were in a loop the config was updating the wrong widget. This is still
+a problem at the end of the project and if I were to spend more time on this project, I would make this a priority.
+
+Configuring the renaming of the files came with massive challenges. First, configuring the Tkinter window to capture
+user input was something I have never done before, but it was straightforward enough so I could figure it out. When it
+came to renaming the file, I needed to rename both the file, and update the dictionary to reflect these changes.
+Renaming the file was within the scope of the os library, but if I were to rename it a second time, the program would
+still be looking for the original name and crash. This error brought to my attention that I need to create some more
+infrastructure than just a dictionary to hold all of the image data. This would be a very large change that would impact
+most of the functionality of the program. I decided to get the info page basics up before this refresh.
+
+The info page is a big part of my design as it can serve as a one-stop-shop to see all the necessary information about
+the photos. Adding top inventories was as easy as sorting photo size and printing them. I know I want to be able to
+search for images on this page, so I left the full left side of the window empty. On the right side, I placed the top
+inventories as well as a graph to visually display inventories against different photos. This graph populates as data is
+added to the program. The graph is hard to make look visually appealing as a large number of data is represented on one
+graph. To fix this, I decided to cap the image names at 8 chars and tilt the labels 45°.
+
+After getting the baseline amount of UI up, I decided to use a text file to remember photos even after the program stops
+running. This requires a bunch of supporting functions like readfile, addtofile and replaceline. This required a large
+overhaul for most of the functions to support the reliance on the text file. After this change, the program uses the
+dictionary and text file in tandem, updating the dictionary based on the text file and updating the UI based on the
+dictionary. Although this could be changed to only rely on the text file, the dictionary is important for easy access
+when updating the UI. This change also helped with the previous rename file issue as when the file is renamed, the file
+name is changed, and the text file is edited.
+
+To clean up the UI of the homepage/info page I updated the colour of the menu bar and added icons rather than buttons.
+This just made the UI look more professional and cleaner so I could add more to the dashboard/info page.
+
+The last feature I added to this program was search functionality. On the left side of the info page window, I added a
+user input function (reused some code from the rename function). Using pythons “if substring in string” function I was
+able to create a simple search function that adds the inventory if it satisfies the search condition.
+
+As a whole, my image repository focuses primarily on processing the data and creating a UI framework to make conclusions
+from the data. By implementing a system to track inventory and rename photos, photos are easily edited. The info page
+holds more information about the images such as image size, top and total inventories, and a graph displaying all
+photos. The next steps for this project would be to encrypt the photo data so it is more secure, speed up the program
+when dealing with large images, and to make the dashboard able to show more than 10 photos at once.
+
